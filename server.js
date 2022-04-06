@@ -60,7 +60,9 @@ app.get("/", async (req, res) => {
 
       const files = fs.readdirSync(dir);
       files.forEach((file, index) => {
-        imagesArray.push(file);
+        if (file !== ".gitkeep") {
+          imagesArray.push(file);
+        }
       });
       post.slides = imagesArray;
 
