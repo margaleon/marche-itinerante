@@ -70,6 +70,8 @@ app.get("/", async (req, res) => {
       //   console.log(err);
       // }
 
+      post.slides = imagesArray;
+
       const dateOptions = {
         weekday: "long",
         year: "numeric",
