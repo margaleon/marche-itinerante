@@ -17,13 +17,12 @@ const map = new mapboxgl.Map({
   zoom: 10, // starting zoom
 });
 
-const api_url = "http://138.68.158.8:8082/api/positions";
+const api_url = "https://marche-itinerante-tracker.xyz/api/positions";
 
 map.on("load", async () => {
   getPos();
 
   function getPos() {
-    console.log("request!");
     $.ajax({
       type: "GET",
       url: api_url,
