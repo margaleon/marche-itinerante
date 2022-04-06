@@ -94,4 +94,5 @@ app.use("/upload", uploadRoutes);
 
 const server = app.listen(port, () => {
   console.log(`Server running on port ${port}`);
+  console.log(__dirname);
 });
