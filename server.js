@@ -56,7 +56,7 @@ app.get("/", async (req, res) => {
       /* create arrays of images */
       const postIndex = Number(index) + 1;
       let imagesArray = [];
-      const dir = __dirname + `/views/static/uploads/posts/post_${postIndex}`;
+      // const dir = __dirname + `/views/static/uploads/posts/post_${postIndex}`;
 
       // try {
       //   const files = fs.readdirSync(dir);
