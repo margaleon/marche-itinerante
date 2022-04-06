@@ -58,13 +58,17 @@ app.get("/", async (req, res) => {
       let imagesArray = [];
       const dir = __dirname + `/views/static/uploads/posts/post_${postIndex}`;
 
-      const files = fs.readdirSync(dir);
-      files.forEach((file, index) => {
-        if (file !== ".gitkeep") {
-          imagesArray.push(file);
-        }
-      });
-      post.slides = imagesArray;
+      try {
+        const files = fs.readdirSync(dir);
+        files.forEach((file, index) => {
+          if (file !== ".gitkeep") {
+            imagesArray.push(file);
+          }
+        });
+        post.slides = imagesArray;
+      } catch (err) {
+        console.log(err);
+      }
 
       const dateOptions = {
         weekday: "long",
