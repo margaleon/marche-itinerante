@@ -1,0 +1,32 @@
+<label>Titre</label>
+<input class="data-input" type="text" name="title" placeholder="<%= postData.title %>" id="title" required>
+
+<label>Date</label>
+<input class="data-input" type="datetime-local" name="date" id="date" required>
+
+<label>Auteur</label>
+<input class="data-input" type="author" name="author" placeholder="<%= postData.author %>" id="author" required>
+
+<div class="editor">
+  <textarea name="content" id="editor">
+    <%= postData.content %>
+  </textarea>
+  
+  <script type="text/javascript">
+    
+    ClassicEditor
+    .create(document.querySelector("#editor"), {
+
+      toolbar: [ "heading", "|", "bold", "italic", "link", "|", "undo", "redo"  ],
+        heading: {
+            options: [
+                { model: "paragraph", title: "Paragraphe", class: "ck-heading_paragraph" },
+                { model: "heading4", view: "h4", title: "Sous-titre", class: "ck-heading_heading4" },
+            ]
+        }
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  </script>
+</div>

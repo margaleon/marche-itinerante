@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Marche itinérante</title>
+    
+    <link rel="stylesheet" href="./static/css/styles.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+    <script src="https://kit.fontawesome.com/2f8670a614.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  </head>
+  <body>
+
+    <!-- header -->
+    <header class="header">
+      <%- include("./partials/header"); %>
+    </header>
+
+    <!-- home section -->
+    <section class="home-section" id="home" title="accueil">
+      <%- include("./partials/home"); %>
+    </section>
+
+    <!-- about section -->
+    <section class="about-section" id="about" title="à propos">
+      <%- include("./partials/about"); %>
+    </section>
+
+    <!-- map section -->
+    <section class="map-section" id="map" title="carte interactive">
+      <%- include("./partials/map"); %>
+    </section>
+
+    <!-- logbook section -->
+    <section class="logbook-section" id="logbook" title="journal de bord">
+      <%- include("./partials/logbook", {posts}); %>
+    </section>
+
+    <!-- participants section -->
+    <section class="participants-section" id="participants">
+      <% if (participants.length !== 0) { %>
+        <%- include("./partials/participants", {participants}); %>
+      <% } else { %>
+        <h2>Les Participants</h2>
+        <h4 class="placeholder-text">Aucun participant enregistré pour le moment.</h4>
+      <% }; %>
+    </section>
+
+    <!-- crowdfunding section -->
+    <section class="crowdfunding-section">
+      <%- include("./partials/crowdfunding"); %>
+    </section>
+
+    <!-- footer -->
+    <footer class="footer" id="footer">
+      <%- include("./partials/footer"); %>
+    </footer>
+  </body>
+
+  <script src="./static/js/scripts.js"></script>
+  <script src="./static/js/map.js"></script>
+  <script src="./static/js/timeline.js"></script>
+
+</html>
+

@@ -1,0 +1,28 @@
+
+<nav class="nav">
+  <div class="topnav">
+    <div class="nav-toggler">
+      <span class="bar top"></span>
+      <span class="bar middle"></span>
+      <span class="bar bottom"></span>
+    </div>
+  </div>
+
+  <ul class="nav-items">
+    <li class="nav-item"><a href="#home">accueil</a></li>
+    <li class="nav-item"><a href="#about">à propos</a></li>
+    <li class="nav-item"><a href="#map">carte</a></li>
+    <li class="nav-item"><a href="#logbook">journal de bord</a></li>
+    <li class="nav-item"><a href="#participants">participants</a></li>
+    <li class="nav-item"><a href="#footer">contact</a></li>
+
+    <% if(accessToken) { %>
+    <li class="nav-item">
+      <a href="/logout"><i class="fa-solid fa-lock logout-btn"></i></a>
+    </li>
+    <% } else if(!accessToken) { %>
+      <li class="nav-item"><a href="/auth/login">login</a></li>
+    <% }; %>
+  </ul>
+
+</nav>

@@ -1,0 +1,40 @@
+<h2>Les Participants</h2>
+
+<div class="cards-group">
+
+  <% participants.forEach(function(participant, index) { %>
+  <div class="card">
+    <img src="../static/img/participants/<%= participant.firstName %>.jpg" alt="">
+    <div class="card-content">
+      <h4><%= participant.firstName + " " + participant.lastName %></h4>
+      <p><%= participant.presentation %></p>
+
+      <!-- <span><%= index %></span> -->
+
+      <div class="review">
+        <audio src="../static/uploads/participant_<%= index + 1 %>/<%= participant.firstName %>_review.mp3" controls></audio>
+
+        <% if(accessToken) { %>
+        <button class="add-review btn" id="<%= participant.id %>">+</button>
+        <% }; %>
+      </div>
+      
+
+      <div class="popup" id="popup_<%= index %>">
+        <form action="/upload/audio/<%= participant.id %>?participantindex=<%= index %>&participantname=<%= participant.firstName %>" method="POST" enctype="multipart/form-data">
+          
+          <div>
+            <label class="upload-label">Ajouter un retour :</label>
+            <input id="audio-upload" type="file" name="audio" required accept=".mp3">
+          </div>
+
+          <input type="submit" value="send" class="btn send-review">
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+  <% }); %>
+  
+</div>

@@ -1,0 +1,944 @@
+/* ----------FONTS---------- */
+
+@font-face {
+  font-family: Commons;
+  src: url("../fonts/CommonsRegular.ttf");
+}
+
+/* ----------VARIABLES---------- */
+
+:root {
+  --green: #518e3c;
+  --light-green: #96cb83;
+  --orange: #f8b33d;
+  --light-orange: #ffd08a;
+  --blue: #75cced;
+  --light-blue: #b8e9f6;
+  --black: #000000;
+  --grey: #bebebe;
+  --light-grey: #e2e2e2;
+  --white: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.3);
+  scroll-behavior: smooth;
+}
+
+/* ----------GLOBAL SETTINGS---------- */
+
+::selection {
+  background-color: var(--light-orange);
+  color: var(--black);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-tap-highlight-color: transparent;
+  font-family: "Univers";
+  font-weight: 200;
+  font-size: 20px;
+  color: var(--black);
+  transition: 0.5s ease;
+}
+
+html {
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: Commons;
+  font-weight: 300;
+}
+
+h1 {
+  font-size: 110px;
+  line-height: 100%;
+  transition: 0.5s ease;
+}
+
+h2 {
+  font-size: 70px;
+  line-height: 120%;
+  margin: 20px 0;
+}
+
+h3 {
+  font-size: 40px;
+}
+
+h4 {
+  font-size: 30px;
+}
+
+section {
+  overflow: hidden;
+}
+
+/* ----------buttons---------- */
+
+.btn {
+  border: none;
+  border-radius: 50px;
+  padding: 7px 20px 10px 20px;
+  margin: 20px;
+  font-family: "Univers";
+  font-size: 25px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.btn:hover {
+  background-color: var(--orange);
+  color: var(--white);
+}
+
+.upload-label {
+  color: var(--black);
+  font-weight: bold;
+}
+
+input[type="file"] {
+  -webkit-appearance: none;
+  text-align: left;
+  -webkit-rtl-ordering: left;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  -webkit-appearance: none;
+  border: none;
+  border-radius: 4px;
+  padding: 5px;
+  background-color: var(--white);
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+  background-color: var(--orange);
+  color: var(--white);
+}
+
+.home-btn {
+  color: white;
+  display: inline;
+  float: left;
+  transition: 0.5s ease;
+}
+
+.home-btn:hover {
+  color: var(--orange);
+}
+
+/* ----------HEADER---------- */
+
+.header {
+  padding: 12px 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 99;
+  width: 100%;
+  height: 70px;
+  background-color: var(--green);
+  box-shadow: var(--shadow);
+  padding: 20px 70px;
+  transition: 0.5s ease;
+}
+
+.header .nav-items {
+  transition: 0.5s ease;
+}
+
+.header nav li {
+  display: inline;
+  float: left;
+  padding-right: 30px;
+  transition: 0.5s ease;
+}
+
+.header nav li:last-child {
+  float: right;
+  padding-right: 0;
+  transition: 0.5s ease;
+}
+
+.header .nav ul li a,
+.header .nav ul li a i {
+  color: var(--white);
+  transition: 0.5s ease;
+}
+
+.header .nav ul li a:hover,
+.header .nav ul li a i:hover {
+  color: var(--orange);
+}
+
+.header .nav-toggler {
+  display: none;
+  transition: 0.5s ease;
+}
+
+/* ----------HOME SECTION---------- */
+
+.home-section {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+.home-content {
+  display: flex;
+  flex-direction: column;
+  padding: 100px 70px;
+}
+
+.home-content p {
+  margin: 10px 0;
+  font-size: 25px;
+}
+
+.home-content p a {
+  color: var(--black);
+  transition: 0.5s ease;
+}
+
+.home-content p a:hover {
+  color: var(--orange);
+}
+
+/* ----------ABOUT SECTION---------- */
+
+.about-section {
+  background-color: var(--green);
+  color: var(--white);
+  min-height: 100vh;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  padding: 100px 70px;
+  float: right;
+  text-align: right;
+}
+
+.about-content p {
+  margin: 10px 0;
+  font-size: 25px;
+}
+
+.reference-links {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.about-content a {
+  margin: 5px 0;
+  color: var(--white);
+  padding: 5px;
+  width: fit-content;
+  transition: 0.5s ease;
+}
+
+.about-content a:hover {
+  color: var(--orange);
+  background-color: var(--white);
+}
+
+/* ----------MAP SECTION---------- */
+
+.map-section {
+  height: 100vh;
+  width: 100%;
+}
+
+.map {
+  border: none;
+  height: 100vh;
+  width: 100%;
+}
+
+.mapboxgl-marker {
+  cursor: pointer;
+  z-index: 9;
+}
+
+.mapboxgl-popup-content p {
+  font-weight: bold;
+  font-size: 20px;
+  padding: 5px;
+}
+
+.mapboxgl-popup-content span {
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* ----------LOGBOOK SECTION---------- */
+
+.logbook-section {
+  display: flex;
+  flex-direction: column;
+  padding: 0 100px;
+  height: fit-content;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.logbook-content {
+  height: fit-content;
+  width: 100vw;
+}
+
+.logbook-content h2 {
+  margin: 60px 0;
+}
+
+/* ----------timeline---------- */
+
+.timeline {
+  padding: 15px;
+  display: block;
+}
+
+.timeline ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.timeline li {
+  margin-top: 0px;
+  position: relative;
+  width: 100%;
+  padding: 0px;
+}
+
+.timeline-point {
+  border: none;
+  position: absolute;
+  border-radius: 50%;
+  background: lightgray;
+  width: 30px;
+  height: 30px;
+  top: -18px;
+  bottom: 0;
+  right: 0;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+
+.timeline-line {
+  background: lightgray;
+  width: 100%;
+  height: 6px;
+  border-radius: 12px;
+  position: relative;
+}
+
+.timeline-innerline {
+  position: absolute;
+  background: green;
+  width: 0%;
+  height: 6px;
+  left: 0%;
+  transition: 0.5s ease;
+  border-radius: 999px;
+}
+
+.placeholder-text {
+  margin: 40px;
+}
+
+/* ----------gallery---------- */
+
+.gallery-container {
+  position: relative;
+  margin: 50px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: start;
+  align-content: center;
+  justify-items: start;
+  justify-content: center;
+}
+
+.thumb {
+  margin: 6px;
+  background-color: var(--orange);
+  overflow: hidden;
+  line-height: 0;
+}
+
+.thumb img {
+  max-width: 100%;
+  height: 100%;
+  cursor: pointer;
+  transition: 0.5s ease;
+  overflow: hidden;
+}
+
+.thumb img:hover {
+  opacity: 0.5;
+}
+
+.img-form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: right;
+}
+
+.delete-img-btn {
+  background-color: var(--white);
+  color: var(--orange);
+  height: 36px;
+  width: 36px;
+  padding: 0 0 5px 0;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.delete-img-btn:hover {
+  background-color: var(--green);
+  color: var(--white);
+}
+
+/* ----------posts---------- */
+
+.post-container {
+  position: relative;
+  margin: 50px 100px;
+  transition: 0.5s ease;
+  text-align: left;
+  display: none;
+}
+
+.post-data h3,
+.post-data h4,
+.post-data p,
+.post-data span {
+  margin: 20px 0;
+}
+
+/* ----------editor---------- */
+
+.admin-editor {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.admin-editor hr {
+  width: 100%;
+  margin: 10px 0 20px 0;
+}
+
+.edition-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.delete-btn,
+.photos-btn,
+.edit-btn {
+  height: 45px;
+  padding: 5px 20px 10px 20px;
+  margin: 20px 10px;
+}
+
+.edit-btn {
+  padding: 3px 20px 10px 20px;
+}
+
+.delete-btn {
+  background-color: var(--green);
+}
+
+.admin-editor form {
+  width: 100%;
+}
+
+.placeholder-photos {
+  background-color: var(--light-grey);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 50px;
+}
+
+.placeholder-photos .upload-images {
+  text-align: center;
+}
+
+.placeholder-photos input {
+  margin: 20px;
+}
+
+.placeholder-photos label {
+  text-align: center;
+}
+
+.select-files {
+  background-color: var(--white);
+}
+
+.new-editor {
+  margin: 30px 0;
+  width: 100%;
+  padding: 0 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.new-editor hr {
+  width: 100%;
+  margin: 10px 0 20px 0;
+}
+
+.new-btn {
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  margin: 20px;
+  padding: 6px 0 0 0;
+  font-size: 55px;
+  font-weight: bold;
+}
+
+/* ----------PARTICIPANTS SECTION---------- */
+
+.participants-section {
+  background-color: var(--light-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-bottom: 100px;
+}
+
+.participants-section h2 {
+  color: var(--white);
+  margin: 60px 30px;
+  text-align: center;
+}
+
+.participants-section .placeholder-text {
+  color: var(--white);
+  margin: 30px;
+  text-align: center;
+}
+
+.cards-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.card {
+  background-color: var(--white);
+  max-width: 400px;
+  margin: 20px;
+}
+
+.card img {
+  max-width: 100%;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.review {
+  display: inline-flex;
+  width: 100%;
+  margin: 20px 0;
+  justify-content: space-between;
+}
+
+.review audio {
+  max-width: 250px;
+}
+
+.review button {
+  background-color: var(--blue);
+  color: var(--white);
+  width: 53px;
+  height: 53px;
+  margin: 0 20px;
+  padding: 0 0 5px 0;
+  font-size: 40px;
+}
+
+.review button:hover {
+  background-color: var(--orange);
+}
+
+/* ----------add review---------- */
+
+.popup {
+  display: none;
+  position: relative;
+  height: 100px;
+  padding: 10px;
+  background-color: var(--light-blue);
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  z-index: 9;
+}
+
+.popup form {
+  display: flex;
+  padding: 10px;
+}
+
+.send-review {
+  background-color: var(--white);
+  color: var(--blue);
+  height: 40px;
+  width: 65px;
+  padding: 5px 10px;
+  font-size: 20px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.send-review:hover {
+  color: var(--white);
+}
+
+/* ----------CROWDFUNDING SECTION---------- */
+
+.crowdfunding-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.crowdfunding-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 70px;
+}
+
+.crowdfunding-content p {
+  margin: 20px 0;
+}
+
+.donation-btn {
+  width: 200px;
+  transition: 0.5s ease;
+}
+
+.donation-btn a {
+  color: var(--white);
+}
+
+/* ----------FOOTER---------- */
+
+.footer {
+  background-color: var(--green);
+  color: var(--white);
+  bottom: 0;
+  padding: 20px;
+  width: 100%;
+}
+
+.contact {
+  margin: 0 20px;
+  font-family: "Univers";
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  align-items: flex-start;
+}
+
+.footer-content div {
+  text-align: left;
+  margin: 20px;
+}
+
+.footer-content a,
+.footer-content i {
+  color: var(--white);
+  transition: 0.5s ease;
+}
+
+.footer-content a:hover,
+.footer-content i:hover {
+  color: var(--orange);
+}
+
+.footer-content p {
+  margin: 5px 0;
+}
+
+/* ----------LOGIN PAGE---------- */
+
+.login-section {
+  position: relative;
+  margin: 100px 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.login-form {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-form label input {
+  height: 25px;
+  padding: 5px;
+}
+
+.login-form a {
+  font-size: 15px;
+  color: var(--blue);
+  width: 100%;
+  text-align: right;
+  padding: 2px;
+}
+
+.login-form a:hover {
+  color: var(--orange);
+}
+
+/* ----------EDITOR PAGE---------- */
+
+.editor-section {
+  background-color: var(--blue);
+  min-height: 100vh;
+}
+
+.editor-content {
+  margin: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.editor-content form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.editor-content label,
+.editor-content h2 {
+  color: var(--white);
+  text-align: center;
+}
+
+.post-btn {
+  background-color: var(--white);
+  color: var(--blue);
+}
+
+.editor-content .data-input {
+  width: 300px;
+  margin: 10px;
+}
+
+.editor-content .editor {
+  margin: 20px;
+  width: 630px;
+}
+
+.visible {
+  display: block;
+}
+
+/* ----------ERROR---------- */
+
+.error-section {
+  position: relative;
+  margin: 100px 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 50vh;
+}
+
+/* ----------RESPONSIVE---------- */
+
+@media screen and (max-width: 1000px) {
+  .gallery-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  h1 {
+    font-size: 90px;
+  }
+
+  h2 {
+    font-size: 60px;
+  }
+
+  .about-content h2,
+  .logbook-content h2,
+  .participants-section h2 {
+    margin: 40px 0;
+  }
+
+  .header.open {
+    height: 300px;
+  }
+
+  .header .nav-item {
+    transform: translateY(-300px);
+    width: 100%;
+  }
+
+  .header.open .nav-item {
+    transform: translateY(0);
+  }
+
+  .header .nav-toggler {
+    margin-top: 5px;
+    height: 24px;
+    width: 31px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    float: right;
+    transition: 0.5s ease;
+  }
+
+  .header .nav-toggler .bar {
+    position: relative;
+    height: 3px;
+    width: 31px;
+    display: block;
+    background-color: var(--white);
+    transition: 0.5s ease;
+  }
+
+  .header .nav-toggler:hover .bar {
+    background-color: var(--orange);
+  }
+
+  .header.open .bar.top {
+    transform-origin: top right;
+    transform: rotate(-45deg);
+  }
+
+  .header.open .bar.middle {
+    transform: scaleY(0);
+  }
+
+  .header.open .bar.bottom {
+    transform-origin: bottom right;
+    transform: rotate(45deg);
+  }
+
+  .logout-btn {
+    float: right;
+  }
+
+  .editor-content .editor {
+    width: 500px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .gallery-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 60px;
+    margin-top: 50px;
+  }
+
+  h2 {
+    font-size: 40px;
+  }
+
+  h3 {
+    font-size: 30px;
+  }
+
+  h4 {
+    font-size: 20px;
+  }
+
+  .home-content,
+  .about-content,
+  .crowdfunding-content {
+    padding: 70px 50px;
+  }
+
+  .about-content h2,
+  .logbook-content h2,
+  .editor-content h2,
+  .participants-section h2,
+  .crowdfunding-content h2 {
+    margin: 20px 0;
+  }
+
+  .post-container {
+    margin: 50px;
+  }
+
+  .login-section {
+    margin: 100px 40px;
+  }
+
+  .editor-content .editor {
+    width: 350px;
+  }
+}

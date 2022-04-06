@@ -1,0 +1,100 @@
+<div class="logbook-content">
+  <h2>Journal de Bord</h2>
+
+  <!-- timeline -->
+  <div class="timeline">
+
+    <div class="timeline-line">
+      <span class="timeline-innerline"></span>
+    </div>
+
+    <ul id="timeline">
+      <div class="progress"></div>
+      <div class="line"></div>
+
+      <% posts.forEach(function(post) { %>
+        <li class="knot" id="<%= post.id %>">
+          <span class="timeline-point"></span>
+        </li>
+      <% }); %>
+
+    </ul>
+  </div>
+
+  <!-- article -->
+  <% if (numPosts === 0) { %>
+    <h3 class="placeholder-text">Aucun article n'a été ajouté...</h3>
+  <% } else { %>
+    <h4 class="placeholder-text">Sélectionnez un point de la timeline pour voir nos articles !</h4>
+  <% }; %>
+
+  <% posts.forEach(function(post, index) { %>
+    <div class="post-container" id="<%= post.id %>">
+
+      <h3><%= post.title %></h3>
+      <h4><%= post.formattedDate %></h4>
+
+      <div class="raw-html">
+        <%= post.content %>
+      </div>
+      <span><i><%= post.author %></i></span>
+
+      <!-- gallery -->
+      <div class="gallery-container">
+        <% post.slides.forEach(function(slide) { %>
+          <div class="thumb">
+
+            <% if(accessToken) { %>
+            <div class="img-form">
+              <form action="upload/images/<%= post.id %>?_method=DELETE&slide=<%= slide %>&postindex=<%= index %>" method="POST">
+                <input type="submit" value="x" class="delete-img-btn btn">
+              </form>
+            </div>
+            <% }; %>
+
+            <a href="/static/uploads/posts/post_<%= index + 1 %>/<%= slide %>" target="_blank">
+              <img src="/static/uploads/posts/post_<%= index + 1 %>/<%= slide %>" alt="">
+            </a>
+          </div>
+        <% }); %>
+      </div>
+
+      <!-- editor -->
+      <% if(accessToken) { %>
+      <div class="admin-editor">
+        <hr/>
+
+        <form method="POST" action="/upload/images/<%= post.id %>?postindex=<%= index %>" enctype="multipart/form-data">
+          <div class="placeholder-photos">
+
+            <div class="upload-images">
+              <label for="image_upload" class="upload-label">Ajouter des photos :</label>
+              <input id="image_upload" type="file" name="images" required multiple accept=".jpg" />
+            </div>
+              
+            <input type="submit" value="send" class="photos-btn btn"/>
+          </div>
+        </form>
+
+        <div class="edition-btns">
+          <a href="/edit/<%= post.id %>" class="edit-btn btn">edit</a>
+          <form action="/posts/<%= post.id %>?_method=DELETE&slides=<%= post.slides %>&postindex=<%= index %>" method="POST">
+            <input type="submit" value="delete" class="delete-btn btn">
+          </form>
+        </div>
+      </div>
+      <% }; %>
+
+    </div>
+  <% }); %>
+
+  <% if(accessToken) { %>
+  <div class="new-editor">
+    <hr/>
+    <h4>Écrire un Nouvel Article</h4>
+    <a href="/edit" class="new-btn btn" alt="ajouter un article">+</a>
+  </div>
+  <% }; %>
+
+</div>
+
