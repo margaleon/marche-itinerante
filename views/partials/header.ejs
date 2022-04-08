@@ -18,10 +18,10 @@
 
     <% if(accessToken) { %>
     <li class="nav-item">
-      <a href="/logout"><i class="fa-solid fa-lock logout-btn"></i></a>
+      <a href="logout"><i class="fa-solid fa-lock logout-btn"></i></a>
     </li>
     <% } else if(!accessToken) { %>
-      <li class="nav-item"><a href="/auth/login">login</a></li>
+      <li class="nav-item"><a href="auth/login">login</a></li>
     <% }; %>
   </ul>
 
