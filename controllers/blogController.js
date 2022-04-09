@@ -70,9 +70,7 @@ const images_upload = async (req, res) => {
 const delete_image = async (req, res) => {
   const postIndex = Number(req.query.postindex) + 1;
   const selectedImage = req.query.slide;
-  let imageDir =
-    __dirname +
-    `./../views/static/uploads/posts/post_${postIndex}/${selectedImage}`;
+  let imageDir = `views/static/uploads/posts/post_${postIndex}/${selectedImage}`;
   try {
     fs.unlinkSync(imageDir);
     console.log(imageDir);
