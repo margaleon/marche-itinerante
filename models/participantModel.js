@@ -6,6 +6,7 @@ const participantSchema = new Schema({
   firstName: { type: String, required: true },
   age: { type: Number, required: true },
   presentation: { type: String, required: true },
+  imageUrl: { type: String },
   review: {
     audioUrl: { type: String },
     publicId: { type: String },
