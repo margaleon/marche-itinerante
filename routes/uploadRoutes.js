@@ -1,44 +1,45 @@
 const express = require("express");
-const path = require("path");
 const cloudinary = require("../utils/cloudinary");
-const multer = require("multer");
-const blogController = require("../controllers/blogController");
 const { authenticateToken } = require("../utils/JWT");
 const upload = require("../utils/multer");
 const { Post } = require("../models/postModel");
-
-// const tempDir = "./views/static/temp/";
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, tempDir);
-//   },
-//   filename: function (req, file, cb) {
-//     if (file.fieldname === "audio") {
-//       cb(
-//         null,
-//         req.query.participantname + "_review" + path.extname(file.originalname)
-//       );
-//     } else {
-//       cb(null, Date.now() + path.extname(file.originalname));
-//     }
-//   },
-// });
+const { Participant } = require("../models/participantModel");
 
 const router = express.Router();
 
-// router.post(
-//   "/audio/:id",
-//   authenticateToken,
-//   upload.single("audio"),
-//   blogController.audio_upload
-// );
-// router.post(
-//   "/images/:id",
-//   authenticateToken,
-//   upload.array("images", 12),
-//   blogController.images_upload
-// );
-// router.delete("/images/:id", authenticateToken, blogController.delete_image);
+router.post(
+  "/audio/:id",
+  authenticateToken,
+  upload.single("audio"),
+  async (req, res) => {
+    let participantId = req.params.id;
+    let participantIndex = Number(req.query.participantindex) + 1;
+    let folderName = `participant_${participantIndex}`;
+    try {
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        resource_type: "video",
+        folder: folderName,
+      });
+
+      const audio = {
+        audioUrl: result.secure_url,
+        publicId: result.public_id,
+      };
+      console.log(participantId);
+      await Participant.findByIdAndUpdate(
+        { _id: participantId },
+        { $set: { review: audio } }
+      );
+
+      res.redirect("/");
+    } catch (err) {
+      console.log(err);
+      res.render("error", {
+        message: "L'upload a échoué. Veuillez réessayer.",
+      });
+    }
+  }
+);
 
 router.post(
   "/images/:id",
@@ -63,6 +64,9 @@ router.post(
       res.redirect("/");
     } catch (err) {
       console.log(err);
+      res.render("error", {
+        message: "L'upload a échoué. Veuillez réessayer.",
+      });
     }
   }
 );
@@ -70,22 +74,21 @@ router.post(
 router.delete("/images/:id", authenticateToken, async (req, res) => {
   try {
     let postId = req.params.id;
-    let postIndex = Number(req.query.postindex) + 1;
-    let selectedImage = req.query.image;
+    let imgPublicId = req.query.imagePublicId;
 
-    const publicId = selectedImage.publicId;
-
-    await cloudinary.uploader.destroy({ public_id: publicId }, (err, res) => {
+    await cloudinary.uploader.destroy(imgPublicId, (err, res) => {
       console.log(err, res);
     });
 
     await Post.findByIdAndUpdate(
       { _id: postId },
-      { $pull: { images: { public_id: publicId } } }
+      { $pull: { images: { publicId: imgPublicId } } }
     );
+
     res.redirect("/");
   } catch (err) {
     console.log(err);
+    res.render("error", { message: "La suppression a échoué." });
   }
 });
 

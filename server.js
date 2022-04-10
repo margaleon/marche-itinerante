@@ -3,10 +3,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
-const fs = require("fs");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const cloudinary = require("cloudinary");
 
 const { Participant } = require("./models/participantModel");
 const { Post } = require("./models/postModel");

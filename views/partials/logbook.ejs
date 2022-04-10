@@ -46,7 +46,7 @@
         
             <% if(accessToken) { %>
             <div class="img-form">
-              <form action="upload/images/<%= post.id %>?_method=DELETE&image=<%= image %>&postindex=<%= index %>" method="POST">
+              <form action="upload/images/<%= post.id %>?_method=DELETE&imagePublicId=<%= image.publicId %>&postindex=<%= index %>" method="POST">
                 <input type="submit" value="x" class="delete-img-btn btn">
               </form>
             </div>
@@ -68,8 +68,8 @@
           <div class="placeholder-photos">
 
             <div class="upload-images">
-              <label for="image_upload" class="upload-label">Ajouter des photos :</label>
-              <input id="image_upload" type="file" name="image" required multiple accept=".jpg" />
+              <label for="image_upload" class="upload-label">Ajouter une photos :</label>
+              <input id="image_upload" type="file" name="image" required accept=".jpg" />
             </div>
               
             <input type="submit" value="send" class="photos-btn btn"/>
@@ -78,7 +78,7 @@
 
         <div class="edition-btns">
           <a href="/edit/<%= post.id %>" class="edit-btn btn">edit</a>
-          <form action="/posts/<%= post.id %>?_method=DELETE&slides=<%= post.slides %>&postindex=<%= index %>" method="POST">
+          <form action="/posts/<%= post.id %>?_method=DELETE&images=<%= post.images %>&postindex=<%= index %>" method="POST">
             <input type="submit" value="delete" class="delete-btn btn">
           </form>
         </div>

@@ -1,6 +1,7 @@
 const { Post } = require("../models/postModel");
 const fs = require("fs");
 const del = require("del");
+const cloudinary = require("cloudinary");
 
 /* GET ALL POSTS */
 const post_get_all = async (req, res) => {
@@ -44,6 +45,7 @@ const post_create = async (req, res) => {
     const savedPost = await newPost.save();
     res.status(200).redirect("/");
   } catch (err) {
+    console.log(err);
     res.status(500).render("error", { message: err });
   }
 };
@@ -71,25 +73,23 @@ const post_update = async (req, res) => {
 const post_delete = async (req, res) => {
   try {
     const postIndex = Number(req.query.postindex) + 1;
-    /* delete images folder */
-    let imagesDir =
-      __dirname + `./../views/static/uploads/posts/post_${postIndex}`;
-    await del([imagesDir]);
-
-    /* recreate empty images folder */
-    fs.mkdir(
-      __dirname + "./../views/static/uploads/posts" + `/post_${postIndex}`,
-      { recursive: true },
-      () => {
-        console.log("folder created");
-      }
-    );
+    let selectedPost = await Post.findById(req.params.id);
+    let imagesArray = selectedPost.images;
+    imagesArray.forEach(async (image) => {
+      console.log(image.publicId);
+      await cloudinary.uploader.destroy(image.publicId, (err, res) => {
+        console.log(err, res);
+      });
+    });
 
     await Post.findByIdAndDelete(req.params.id);
 
     res.status(200).redirect("/");
   } catch (err) {
-    res.status(500).render("error", { message: err });
+    console.log(err);
+    res.status(500).render("error", {
+      message: "La suppression a échoué. Veuillez réessayer.",
+    });
   }
 };
 

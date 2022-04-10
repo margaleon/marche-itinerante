@@ -12,7 +12,9 @@
       <!-- <span><%= index %></span> -->
 
       <div class="review">
-        <audio src="../static/uploads/participant_<%= index + 1 %>/<%= participant.firstName %>_review.mp3" controls></audio>
+        <% if(participant.review.audioUrl) { %>
+        <audio src="<%= participant.review.audioUrl %>" controls></audio>
+        <% }; %>
 
         <% if(accessToken) { %>
         <button class="add-review btn" id="<%= participant.id %>">+</button>
