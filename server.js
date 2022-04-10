@@ -6,6 +6,7 @@ const methodOverride = require("method-override");
 const fs = require("fs");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const cloudinary = require("cloudinary");
 
 const { Participant } = require("./models/participantModel");
 const { Post } = require("./models/postModel");
@@ -53,19 +54,6 @@ app.get("/", async (req, res) => {
   Post.find({}, async (err, posts) => {
     numPosts = posts.length;
     posts.forEach(async (post, index) => {
-      /* create arrays of images */
-      const postIndex = Number(index) + 1;
-      let imagesArray = [];
-      const dir = __dirname + `/views/static/uploads/posts/post_${postIndex}`;
-
-      const files = fs.readdirSync(dir);
-      files.forEach((file, index) => {
-        if (file !== ".gitkeep") {
-          imagesArray.push(file);
-        }
-      });
-      post.slides = imagesArray;
-
       const dateOptions = {
         weekday: "long",
         year: "numeric",
@@ -88,9 +76,9 @@ app.get("/logout", (req, res) => {
   res.clearCookie("access-token").redirect("/");
 });
 
+/* reset password */
 app.post("/reset-password/:userId/:token", (req, res) => {
   res.render("resetPassword");
-  // reset user password
 });
 
 app.use("/posts", postRoutes);

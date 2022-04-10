@@ -8,6 +8,12 @@ const postSchema = new Schema({
   formattedDate: { type: String },
   content: { type: String, required: true },
   author: { type: String, required: true },
+  images: [
+    {
+      imageUrl: { type: String },
+      publicId: { type: String },
+    },
+  ],
 });
 
 const Post = mongoose.model("Post", postSchema);

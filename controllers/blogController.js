@@ -28,8 +28,6 @@ const post_edit_byID = async (req, res) => {
   res.render("edit", { postID: id, postData: data });
 };
 
-const tempDir = "./views/static/temp/";
-
 /* UPLOAD AUDIO REVIEW */
 const audio_upload = async (req, res) => {
   let participantIndex = Number(req.query.participantindex) + 1;
@@ -48,43 +46,8 @@ const audio_upload = async (req, res) => {
   res.redirect("/");
 };
 
-/* UPLOAD IMAGES */
-const images_upload = async (req, res) => {
-  let postIndex = Number(req.query.postindex) + 1;
-  const temp = fs.readdirSync(tempDir);
-  temp.forEach((file) => {
-    let imgDir = `./views/static/uploads/posts/post_${postIndex}/`;
-
-    mv(tempDir + file, imgDir + file, function (err) {
-      if (err) {
-        console.log(err);
-        res.render("error", { message: "Une erreur est survenue..." });
-      }
-    });
-  });
-
-  res.redirect("/");
-};
-
-/* DELETE ONE IMAGE */
-const delete_image = async (req, res) => {
-  const postIndex = Number(req.query.postindex) + 1;
-  const selectedImage = req.query.slide;
-  let imageDir = `views/static/uploads/posts/post_${postIndex}/${selectedImage}`;
-  try {
-    fs.unlinkSync(imageDir);
-    console.log(imageDir);
-    res.redirect("/");
-  } catch (err) {
-    console.log(err);
-    res.render("error", { message: "Une erreur est survenue..." });
-  }
-};
-
 module.exports = {
   post_edit_page,
   post_edit_byID,
   audio_upload,
-  images_upload,
-  delete_image,
 };

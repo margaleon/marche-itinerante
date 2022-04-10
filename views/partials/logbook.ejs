@@ -40,20 +40,20 @@
       <span><i><%= post.author %></i></span>
 
       <!-- gallery -->
-      <div class="gallery-container">
-        <% post.slides.forEach(function(slide) { %>
+      <div class="gallery-container" id="my-gallery">
+        <% post.images.forEach(function(image) { %>
           <div class="thumb">
-
+        
             <% if(accessToken) { %>
             <div class="img-form">
-              <form action="upload/images/<%= post.id %>?_method=DELETE&slide=<%= slide %>&postindex=<%= index %>" method="POST">
+              <form action="upload/images/<%= post.id %>?_method=DELETE&image=<%= image %>&postindex=<%= index %>" method="POST">
                 <input type="submit" value="x" class="delete-img-btn btn">
               </form>
             </div>
             <% }; %>
-
-            <a href="/static/uploads/posts/post_<%= index + 1 %>/<%= slide %>" target="_blank">
-              <img src="/static/uploads/posts/post_<%= index + 1 %>/<%= slide %>" alt="">
+        
+            <a href="<%= image.imageUrl %>" target="_blank">
+              <img src="<%= image.imageUrl %>" alt="">
             </a>
           </div>
         <% }); %>
@@ -69,7 +69,7 @@
 
             <div class="upload-images">
               <label for="image_upload" class="upload-label">Ajouter des photos :</label>
-              <input id="image_upload" type="file" name="images" required multiple accept=".jpg" />
+              <input id="image_upload" type="file" name="image" required multiple accept=".jpg" />
             </div>
               
             <input type="submit" value="send" class="photos-btn btn"/>
