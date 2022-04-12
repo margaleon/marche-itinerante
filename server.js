@@ -95,6 +95,10 @@ app.use("/auth", authRoutes);
 app.use("/edit", editorRoutes);
 app.use("/upload", uploadRoutes);
 
+app.use(function (req, res) {
+  res.status(404).render("error", { message: "La page est introuvable." });
+});
+
 const server = app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
