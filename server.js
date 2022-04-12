@@ -42,31 +42,41 @@ mongoose
 
 /* home */
 app.get("/", async (req, res) => {
-  const getParticipants = async function () {
-    const participants = await Participant.find({});
-    return participants;
-  };
+  try {
+    const getParticipants = async function () {
+      const participants = await Participant.find({});
+      return participants;
+    };
 
-  const accessToken = req.cookies["access-token"];
+    const accessToken = req.cookies["access-token"];
 
-  Post.find({}, async (err, posts) => {
-    numPosts = posts.length;
-    posts.forEach(async (post, index) => {
-      const dateOptions = {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-      };
-      const formattedDate = post.date.toLocaleDateString("fr-FR", dateOptions);
-      post.formattedDate = formattedDate;
+    Post.find({}, async (err, posts) => {
+      numPosts = posts.length;
+      posts.forEach(async (post, index) => {
+        const dateOptions = {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "numeric",
+          minute: "numeric",
+        };
+        const formattedDate = post.date.toLocaleDateString(
+          "fr-FR",
+          dateOptions
+        );
+        post.formattedDate = formattedDate;
+      });
+
+      const participants = await getParticipants();
+      res.render("index", { posts, participants, numPosts, accessToken });
     });
-
-    const participants = await getParticipants();
-    res.render("index", { posts, participants, numPosts, accessToken });
-  });
+  } catch (err) {
+    console.log(err);
+    res.status(500).render("error", {
+      message: "Le chargement du contenu a échoué. Veuillez réessayer.",
+    });
+  }
 });
 
 /* logout */

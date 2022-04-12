@@ -8,7 +8,10 @@ const authenticateToken = (req, res, next) => {
   const accessToken = req.cookies["access-token"];
 
   if (!accessToken)
-    return res.status(400).json({ error: "User not authenticated" });
+    return res.status(400).render("error", {
+      message:
+        "Vous n'avez pas l'autorisation d'accéder à cette page. Veuillez vous connecter.",
+    });
 
   try {
     const validToken = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
@@ -17,7 +20,10 @@ const authenticateToken = (req, res, next) => {
       return next();
     }
   } catch (err) {
-    return res.status(400).json({ error: err });
+    console.log(err);
+    return res
+      .status(400)
+      .render("error", { message: "Erreur d'authentification." });
   }
 };
 

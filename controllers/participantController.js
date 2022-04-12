@@ -6,7 +6,7 @@ const participant_get_all = async (req, res) => {
     const participants = await Participant.find();
     res.status(200).json(participants);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).send(err);
   }
 };
 

@@ -4,8 +4,8 @@ const { authenticateToken } = require("../utils/JWT");
 
 const router = express.Router();
 
-router.get("/", postController.post_get_all);
-router.get("/:id", postController.post_get_byID);
+router.get("/", authenticateToken, postController.post_get_all);
+router.get("/:id", authenticateToken, postController.post_get_byID);
 router.post("/", authenticateToken, postController.post_create);
 
 router.put("/:id", authenticateToken, postController.post_update);
