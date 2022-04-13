@@ -6,10 +6,10 @@
   <div class="card">
     <img src="<%= participant.imageUrl %>" alt="">
     <div class="card-content">
-      <% if(participant.age !== "undefined") { %>
-        <h4><%= participant.firstName + " - " + participant.age %> ans</h4>
+      <% if(!participant.age) { %>
+        <h4><%= participant.firstName %></h4>
       <% } else { %>
-          <h4><%= participant.firstName %></h4>
+        <h4><%= participant.firstName + " - " + participant.age %> ans</h4>
       <% }; %>
       <p><%= participant.presentation %></p>
 
