@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const participantSchema = new Schema({
   firstName: { type: String, required: true },
-  age: { type: Number, required: true },
+  age: { type: Number },
   presentation: { type: String, required: true },
   imageUrl: { type: String },
   review: {
