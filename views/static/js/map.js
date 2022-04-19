@@ -93,4 +93,5 @@ const secondNightMarker = new mapboxgl.Marker({ color: "#518e3c" })
   .addTo(map);
 
 map.scrollZoom.disable();
+map.keyboard.enable();
 map.addControl(new mapboxgl.NavigationControl());

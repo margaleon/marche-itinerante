@@ -110,6 +110,10 @@ section {
   color: var(--white);
 }
 
+.btn:focus-visible {
+  outline: 3px solid var(--orange);
+}
+
 .upload-label {
   color: var(--black);
   font-weight: bold;
@@ -145,6 +149,10 @@ input[type="file"]::-webkit-file-upload-button:hover {
 
 .home-btn:hover {
   color: var(--orange);
+}
+
+.home-btn:focus-visible {
+  outline: 3px solid var(--orange);
 }
 
 /* ----------HEADER---------- */
@@ -189,6 +197,11 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .header .nav ul li a:hover,
 .header .nav ul li a i:hover {
   color: var(--orange);
+}
+
+.header .nav ul li a:focus-visible {
+  outline: 3px solid var(--light-green);
+  outline-style: inset;
 }
 
 .header .nav-toggler {
@@ -265,6 +278,11 @@ input[type="file"]::-webkit-file-upload-button:hover {
   background-color: var(--white);
 }
 
+.about-content a:focus-visible {
+  outline: 3px solid var(--light-green);
+  outline-style: inset;
+}
+
 /* ----------MAP SECTION---------- */
 
 .map-section {
@@ -281,6 +299,10 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .mapboxgl-marker {
   cursor: pointer;
   z-index: 9;
+} 
+
+.mapboxgl-marker:focus-visible {
+  outline: 3px solid var(--orange);   
 }
 
 .mapboxgl-popup-content p {
@@ -292,6 +314,12 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .mapboxgl-popup-content span {
   font-size: 14px;
   font-style: italic;
+}
+
+.mapboxgl-canvas:focus-visible,
+.mapboxgl-ctrl-logo:focus-visible, 
+.mapboxgl-ctrl-attrib-inner a:focus-visible {
+  outline: 3px solid var(--orange);
 }
 
 /* ----------LOGBOOK SECTION---------- */
@@ -349,8 +377,13 @@ input[type="file"]::-webkit-file-upload-button:hover {
   top: -18px;
   bottom: 0;
   right: 0;
+  outline: none;
   transition: 0.5s ease;
   cursor: pointer;
+}
+
+.timeline-point:focus-visible {
+  outline: 3px solid var(--orange);
 }
 
 .timeline-line {
@@ -403,7 +436,12 @@ input[type="file"]::-webkit-file-upload-button:hover {
   overflow: hidden;
 }
 
-.thumb img:hover {
+.thumb a {
+  transition: 0.5s ease
+}
+
+.thumb img:hover, 
+.thumb a:focus-visible {
   opacity: 0.5;
 }
 
@@ -703,6 +741,11 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .footer-content a:hover,
 .footer-content i:hover {
   color: var(--orange);
+}
+
+.footer-content a:focus-visible {
+  outline: 3px solid var(--light-green);
+  outline-style: inset;  
 }
 
 .footer-content p {
