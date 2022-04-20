@@ -305,6 +305,10 @@ input[type="file"]::-webkit-file-upload-button:hover {
   outline: 3px solid var(--orange);   
 }
 
+.mapboxgl-popup {
+  z-index: 10;
+}
+
 .mapboxgl-popup-content p {
   font-weight: bold;
   font-size: 20px;
