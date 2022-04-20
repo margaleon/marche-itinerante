@@ -19,10 +19,40 @@ const map = new mapboxgl.Map({
 
 const api_url = "https://marche-itinerante-tracker.xyz/api/positions";
 
+// depart and arrival popups markers
+const departMarker = new mapboxgl.Marker({ color: "#f8b33d" })
+  .setLngLat(departLonLat)
+  .setPopup(new mapboxgl.Popup().setHTML("<p>Départ</p>"))
+  .addTo(map);
+
+const arrivalmarker = new mapboxgl.Marker({ color: "#f8b33d" })
+  .setLngLat(arrivalLonLat)
+  .setPopup(new mapboxgl.Popup().setHTML("<p>Arrivée</p>"))
+  .addTo(map);
+
+const firstNightMarker = new mapboxgl.Marker({ color: "#518e3c" })
+  .setLngLat(firstNightLonLat)
+  .setPopup(new mapboxgl.Popup().setHTML("<p>Première nuit ici !</p>"))
+  .addTo(map);
+
+const secondNightMarker = new mapboxgl.Marker({ color: "#518e3c" })
+  .setLngLat(secondNightLonLat)
+  .setPopup(new mapboxgl.Popup().setHTML("<p>Deuxième nuit là !</p>"))
+  .addTo(map);
+
+let markers = [];
+
 map.on("load", async () => {
   getPos();
 
   function getPos() {
+    if (markers !== null) {
+      markers.forEach((marker, index) => {
+        marker.remove();
+      });
+    }
+    console.log(markers);
+
     $.ajax({
       type: "GET",
       url: api_url,
@@ -46,10 +76,8 @@ map.on("load", async () => {
           dateOptions
         );
 
-        let markers = [];
-
         // Create a new Marker and add it to the map.
-        const posMarker = new mapboxgl.Marker({ color: "#75cced" })
+        let posMarker = new mapboxgl.Marker({ color: "#75cced" })
           .setLngLat([longitude, latitude])
           .setPopup(
             new mapboxgl.Popup().setHTML(
@@ -59,7 +87,7 @@ map.on("load", async () => {
           )
           .addTo(map);
         markers.push(posMarker);
-        console.log(markers.length);
+        console.log(markers);
       },
       error: function (output) {
         console.log(output);
@@ -70,27 +98,6 @@ map.on("load", async () => {
   // make the ajax request every 5 minutes (300000ms)
   setInterval(getPos, 300000);
 });
-
-// depart and arrival popups markers
-const departMarker = new mapboxgl.Marker({ color: "#f8b33d" })
-  .setLngLat(departLonLat)
-  .setPopup(new mapboxgl.Popup().setHTML("<p>Départ</p>"))
-  .addTo(map);
-
-const arrivalmarker = new mapboxgl.Marker({ color: "#f8b33d" })
-  .setLngLat(arrivalLonLat)
-  .setPopup(new mapboxgl.Popup().setHTML("<p>Arrivée</p>"))
-  .addTo(map);
-
-const firstNightMarker = new mapboxgl.Marker({ color: "#518e3c" })
-  .setLngLat(firstNightLonLat)
-  .setPopup(new mapboxgl.Popup().setHTML("<p>Première nuit ici !</p>"))
-  .addTo(map);
-
-const secondNightMarker = new mapboxgl.Marker({ color: "#518e3c" })
-  .setLngLat(secondNightLonLat)
-  .setPopup(new mapboxgl.Popup().setHTML("<p>Deuxième nuit là !</p>"))
-  .addTo(map);
 
 map.scrollZoom.disable();
 map.keyboard.enable();
