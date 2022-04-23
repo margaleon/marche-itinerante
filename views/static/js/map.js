@@ -51,7 +51,7 @@ map.on("load", async () => {
         marker.remove();
       });
     }
-    console.log(markers);
+    // console.log(markers);
 
     $.ajax({
       type: "GET",
@@ -87,7 +87,7 @@ map.on("load", async () => {
           )
           .addTo(map);
         markers.push(posMarker);
-        console.log(markers);
+        // console.log(markers);
       },
       error: function (output) {
         console.log(output);
