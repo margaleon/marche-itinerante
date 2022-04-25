@@ -37,8 +37,10 @@ const image_upload = async (req, res) => {
     const result = await cloudinary.uploader.upload(req.file.path, {
       folder: folderName,
     });
+    const urlParts = result.secure_url.split("upload");
+    const completeUrl = `${urlParts[0]}upload/q_auto,f_auto,w_600,c_scale${urlParts[1]}`;
     const image = {
-      imageUrl: result.secure_url,
+      imageUrl: completeUrl,
       publicId: result.public_id,
     };
     await Post.findByIdAndUpdate(
