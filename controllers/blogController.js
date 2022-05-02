@@ -32,7 +32,7 @@ const post_edit_byID = async (req, res) => {
 const image_upload = async (req, res) => {
   let postId = req.params.id;
   let postIndex = Number(req.query.postindex) + 1;
-  let folderName = `post_${postIndex}`;
+  let folderName = `marche2022/post_${postIndex}`;
   try {
     const result = await cloudinary.uploader.upload(req.file.path, {
       folder: folderName,
